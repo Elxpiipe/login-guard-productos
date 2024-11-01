@@ -30,4 +30,11 @@ export class AuthService {
       console.log(resultado);
     });
    }
+
+   public cerrarSesion(){
+    if(this.usuarioLogeado){
+      this.usuarioLogeado = null;
+      this.accessToken = null;
+    }
+   }
 }
