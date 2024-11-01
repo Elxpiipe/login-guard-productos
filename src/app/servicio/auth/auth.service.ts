@@ -3,6 +3,8 @@ import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { CuerpoLogin } from 'src/app/interfaces/CuerpoLogin';
 import { UsuarioLogeado } from 'src/app/interfaces/UsuarioLogeado';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +16,8 @@ export class AuthService {
   private $cargando = new BehaviorSubject<boolean>(false);
   public cargando = this.$cargando.asObservable();
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {
     
    }
@@ -34,6 +37,7 @@ export class AuthService {
       this.accessToken = resultado.accessToken;
       this.$cargando.next(false)
       console.log(resultado);
+      this.router.navigate(['/','productos'])
     });
    }
 
